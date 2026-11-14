@@ -32,3 +32,6 @@ if(window.matchMedia('(pointer:fine)').matches){
 }
 
 document.querySelectorAll('.magnetic').forEach(el=>{el.addEventListener('mousemove',e=>{if(!window.matchMedia('(pointer:fine)').matches)return;const r=el.getBoundingClientRect();const dx=(e.clientX-r.left-r.width/2)*.12;const dy=(e.clientY-r.top-r.height/2)*.12;el.style.transform='translate('+dx+'px,'+dy+'px)';});el.addEventListener('mouseleave',()=>{el.style.transform='';});});
+
+// Demo shopping bag: interaction only; no payment or checkout.
+let demoBagCount=0;const bagCount=document.querySelector('.bag-count');const bagStatus=document.querySelector('.bag-status');document.querySelectorAll('.add-to-bag').forEach(button=>button.addEventListener('click',()=>{demoBagCount++;if(bagCount)bagCount.textContent=String(demoBagCount);const original=button.innerHTML;button.innerHTML='ADDED TO BAG ✓';button.classList.add('added');setTimeout(()=>{button.innerHTML=original;button.classList.remove('added');},1100);}));
